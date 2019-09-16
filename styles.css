@@ -1,14 +1,51 @@
+body {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    width: 100vw;
+}
+
 #canvas {
     width: 300px;
     height: 150px;
     border: 1px solid black;    
 }
-
 .wrapper {
     display: flex;
     flex-direction: column;
-    width: 100vw;
-    height: 100vh;
-    justify-content: center;
-    align-items: center;
+}
+
+.color__collection {
+    padding-top: 10px;
+    display: flex;
+    flex-direction: row;
+}
+
+.color {
+    display: block;
+    width: 24px;
+    height: 24px;
+    margin-left: 10px;
+    border: 1px solid silver;
+}
+.color_red {
+    background-color: red;
+}
+.color_green {
+    background-color: green;
+}
+.color_blue {
+    background-color: blue;
+}
+.color_yellow {
+    background-color: yellow;
+}
+.color_black {
+    background-color: black;
+}
+
+.color:first-child {
+    margin-left: 0;          
 }

@@ -8,6 +8,10 @@ const brushSmall = document.getElementById('b_s');
 const brushMedium = document.getElementById('b_m');
 const brushBig = document.getElementById('b_b');
 // цвета
+const colors = document.querySelectorAll('.color')
+colors.forEach(node => {
+    console.log(node.style)
+});
 
 canvas.onmousedown = (event) => {
     canvas.onmousemove = (event) => { 
