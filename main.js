@@ -4,12 +4,10 @@ const context = canvas.getContext('2d');
 const buttonSave = document.getElementById('save');
 const buttonClear = document.getElementById('clear');
 // кисти
-const brushSmall = document.getElementById('br_s');
-const brushMedium = document.getElementById('br_m');
-const brushBig = document.getElementById('br_b');
+const brushSmall = document.getElementById('b_s');
+const brushMedium = document.getElementById('b_m');
+const brushBig = document.getElementById('b_b');
 // цвета
-
-
 
 canvas.onmousedown = (event) => {
     canvas.onmousemove = (event) => { 
