@@ -15,6 +15,11 @@ let brushColor = 'black';
 let brushRadius = 10;
 // флаг переключатель состояния "рисую"
 let isDrawing = false;
+let drawStart = (e) => {
+    isDrawing = true;
+    draw(e);
+}
+let drawStop = () => isDrawing = false;
 
 // получить цвета из палитры
 colors.forEach(node => {
@@ -31,11 +36,8 @@ let draw = function (event) {
         context.fillStyle = brushColor;
         context.fill();
         context.closePath();
-    }
-        
+    }        
 };
-let drawStart = () => isDrawing = true;
-let drawStop = () => isDrawing = false; 
 
 canvas.addEventListener('mousedown', drawStart)
 canvas.addEventListener('mousemove', draw)
