@@ -32,10 +32,9 @@ canvas.onmousedown = (event) => {
 }
 
 // очистить канву
-const clearCanvas = () => {
-    console.log('clear!')
+let clearCanvas = () => {
     context.clearRect(0, 0, canvas.width, canvas.height);
 }
 
 // кнопки
-buttonClear.addEventListener('click', clearCanvas())
+buttonClear.addEventListener('click', clearCanvas, false)
