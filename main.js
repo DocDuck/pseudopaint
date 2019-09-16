@@ -11,6 +11,8 @@ const brushBig = document.getElementById('b_b');
 const colors = document.querySelectorAll('.color__collection *')
 // текуший цвет кисточки
 let brushColor = 'black';
+// текущий радиус сечения поверхности кисточки
+let brushRadius = 10;
 
 // получить цвета из палитры
 colors.forEach(node => {
@@ -20,16 +22,16 @@ colors.forEach(node => {
 });
 
 // логика рисовалки
-canvas.onmousedown = (event) => {
-    canvas.onmousemove = (event) => { 
-        let x = event.offsetX;
-        let y = event.offsetY;
-        context.fillStyle = brushColor;
-        context.fill();
-        context.fillRect(x-3, y-3, 5, 5)
-    };
-    canvas.onmouseup = () => canvas.onmousemove = null;
-}
+
+let draw = function (event) {
+    context.beginPath();
+    context.arc(event.offsetX, event.offsetY, brushRadius, 0, Math.PI*2)
+    context.fillStyle = brushColor;
+    context.fill();
+    context.closePath();    
+};    
+
+canvas.addEventListener('mousemove', draw)    
 
 // очистить канву
 let clearCanvas = () => {
