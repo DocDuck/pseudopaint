@@ -12,12 +12,14 @@ const colors = document.querySelectorAll('.color__collection *')
 // текуший цвет кисточки
 let brushColor = 'black';
 
+// получить цвета из палитры
 colors.forEach(node => {
     node.onmousedown = (event) => {
         brushColor = event.target.style.backgroundColor;        
     }    
 });
 
+// логика рисовалки
 canvas.onmousedown = (event) => {
     canvas.onmousemove = (event) => { 
         let x = event.offsetX;
@@ -28,3 +30,12 @@ canvas.onmousedown = (event) => {
     };
     canvas.onmouseup = () => canvas.onmousemove = null;
 }
+
+// очистить канву
+const clearCanvas = () => {
+    console.log('clear!')
+    context.clearRect(0, 0, canvas.width, canvas.height);
+}
+
+// кнопки
+buttonClear.addEventListener('click', clearCanvas())
