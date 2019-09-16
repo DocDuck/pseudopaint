@@ -13,6 +13,8 @@ const colors = document.querySelectorAll('.color__collection *')
 let brushColor = 'black';
 // текущий радиус сечения поверхности кисточки
 let brushRadius = 10;
+// флаг переключатель состояния "рисую"
+let isDrawing = false;
 
 // получить цвета из палитры
 colors.forEach(node => {
@@ -22,16 +24,22 @@ colors.forEach(node => {
 });
 
 // логика рисовалки
-
 let draw = function (event) {
-    context.beginPath();
-    context.arc(event.offsetX, event.offsetY, brushRadius, 0, Math.PI*2)
-    context.fillStyle = brushColor;
-    context.fill();
-    context.closePath();    
-};    
+    if (isDrawing) {
+        context.beginPath();
+        context.arc(event.offsetX, event.offsetY, brushRadius, 0, Math.PI*2)
+        context.fillStyle = brushColor;
+        context.fill();
+        context.closePath();
+    }
+        
+};
+let drawStart = () => isDrawing = true;
+let drawStop = () => isDrawing = false; 
 
-canvas.addEventListener('mousemove', draw)    
+canvas.addEventListener('mousedown', drawStart)
+canvas.addEventListener('mousemove', draw)
+canvas.addEventListener('mouseup', drawStop)    
 
 // очистить канву
 let clearCanvas = () => {
@@ -40,3 +48,16 @@ let clearCanvas = () => {
 
 // кнопки
 buttonClear.addEventListener('click', clearCanvas, false)
+
+
+
+
+
+
+
+
+
+
+
+
+
