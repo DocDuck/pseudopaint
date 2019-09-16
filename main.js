@@ -19,7 +19,10 @@ let drawStart = (e) => {
     isDrawing = true;
     draw(e);
 }
-let drawStop = () => isDrawing = false;
+let drawStop = () => {
+    isDrawing = false;
+    context.beginPath();
+}
 
 // получить цвета из палитры
 colors.forEach(node => {
@@ -29,13 +32,25 @@ colors.forEach(node => {
 });
 
 // логика рисовалки
+context.lineWidth = brushRadius*2;
+
 let draw = function (event) {
     if (isDrawing) {
+        // при изменении позиции мыши создаем переход от предыдущей позиции
+        context.lineTo(event.offsetX, event.offsetY);
+        // соединяем линией точки
+        context.stroke();
+        // создаем новую точку
         context.beginPath();
         context.arc(event.offsetX, event.offsetY, brushRadius, 0, Math.PI*2)
+        // красим точку
         context.fillStyle = brushColor;
         context.fill();
-        context.closePath();
+        // после установки точки перемещаем текущую позицию в новую точку
+        context.beginPath();
+        context.fillStyle = brushColor;
+        context.fill();
+        context.moveTo(event.offsetX, event.offsetY);
     }        
 };
 
