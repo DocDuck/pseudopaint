@@ -13,6 +13,8 @@ const colors = document.querySelectorAll('.color__collection *')
 let brushColor = 'black';
 // текущий радиус сечения поверхности кисточки
 let brushRadius = 10;
+const maxRadius = 30;
+const minRadius = 2;
 // флаг переключатель состояния "рисую"
 let isDrawing = false;
 let drawStart = (e) => {
@@ -62,6 +64,26 @@ canvas.addEventListener('mouseup', drawStop)
 let clearCanvas = () => {
     context.clearRect(0, 0, canvas.width, canvas.height);
 }
+
+// переключалка радиуса кисточки
+let setRadius = (newRadius) => {
+    if (newRadius < minRadius) {
+        newRadius = minRadius;
+    } else if (newRadius > maxRadius) {
+        brushRadius = maxRadius;
+    }
+    brushRadius = newRadius;
+    context.lineWidth = brushRadius*2;
+}
+brushSmall.addEventListener('click', () => {
+    setRadius(2)
+});
+brushMedium.addEventListener('click', () => {
+    setRadius(8)
+});
+brushBig.addEventListener('click', () => {
+    setRadius(16)
+});
 
 // кнопки
 buttonClear.addEventListener('click', clearCanvas, false)
