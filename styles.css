@@ -30,21 +30,6 @@ body {
     margin-left: 10px;
     border: 1px solid silver;
 }
-.color_red {
-    background-color: red;
-}
-.color_green {
-    background-color: green;
-}
-.color_blue {
-    background-color: blue;
-}
-.color_yellow {
-    background-color: yellow;
-}
-.color_black {
-    background-color: black;
-}
 
 .color:first-child {
     margin-left: 0;          
