@@ -29,7 +29,8 @@ let drawStop = () => {
 // получить цвета из палитры
 colors.forEach(node => {
     node.onmousedown = (event) => {
-        brushColor = event.target.style.backgroundColor;        
+        brushColor = event.target.style.backgroundColor;
+        setColor(brushColor);
     }    
 });
 
@@ -44,17 +45,23 @@ let draw = function (event) {
         context.stroke();
         // создаем новую точку
         context.beginPath();
-        context.arc(event.offsetX, event.offsetY, brushRadius, 0, Math.PI*2)
-        // красим точку
-        context.fillStyle = brushColor;
+        context.arc(event.offsetX, event.offsetY, brushRadius, 0, Math.PI*2)        
         context.fill();
         // после установки точки перемещаем текущую позицию в новую точку
         context.beginPath();
-        context.fillStyle = brushColor;
+        
         context.fill();
         context.moveTo(event.offsetX, event.offsetY);
     }        
 };
+
+function setColor(color) {
+    // красим точку
+    context.fillStyle = color;
+    // красим линию между точками
+    context.strokeStyle = color;
+
+}
 
 canvas.addEventListener('mousedown', drawStart)
 canvas.addEventListener('mousemove', draw)
