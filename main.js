@@ -36,13 +36,10 @@ function main() {
         savedImage.src = JSON.parse(localStorage.getItem("drawing"));
         return savedImage
     } 
-    // нарисовать если что то есть в хранилище
-    console.log(localStorage.getItem("drawing"))
+    // нарисовать если что то есть в хранилище    
     if (localStorage.getItem("drawing")) {
-        context.drawImage(getDrawing(), 0, 0);
-        debugger; 
-    }
-    
+        context.drawImage(getDrawing(), 0, 0);         
+    }    
 
     // получить цвета из палитры
     colors.forEach(node => {
