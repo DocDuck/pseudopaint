@@ -1,4 +1,4 @@
-function main() {
+function main() {    
     const canvas = document.getElementById('canvas');
     const context = canvas.getContext('2d');
     // кнопки
@@ -26,6 +26,23 @@ function main() {
         isDrawing = false;
         context.beginPath();
     }
+    // работа с локалсториджем     
+    const saveDrawing = () => {
+        var imageData = JSON.stringify(canvas.toDataURL());        
+        localStorage.setItem("drawing", imageData);
+    }    
+    const getDrawing = () => {        
+        let savedImage = new Image();
+        savedImage.src = JSON.parse(localStorage.getItem("drawing"));
+        return savedImage
+    } 
+    // нарисовать если что то есть в хранилище
+    console.log(localStorage.getItem("drawing"))
+    if (localStorage.getItem("drawing")) {
+        context.drawImage(getDrawing(), 0, 0);
+        debugger; 
+    }
+    
 
     // получить цвета из палитры
     colors.forEach(node => {
@@ -34,7 +51,6 @@ function main() {
             setColor(brushColor);
         }    
     });
-
     // логика рисовалки
     context.lineWidth = brushRadius*2;
 
@@ -95,6 +111,7 @@ function main() {
 
     // кнопки
     buttonClear.addEventListener('click', clearCanvas, false)
+    buttonSave.addEventListener('click', saveDrawing, false)
 }
 
 window.addEventListener("load", main, false);
